@@ -5,9 +5,11 @@ network connectivity. When an issue is detected, the tool should notify you via 
 
 Steps:
 
-1. Access the operating system and gain the key metrics.
+1. Access the operating system and gain the key metrics. (AWS Instance)
 2. Define a threshold for these metrics
 3. Send an alert when the issue is detected 
+
+I'm going to use SES as my notification system 
 
 '''
 
@@ -24,6 +26,22 @@ disk_usage = psutil.disk_usage('/').percent
 cpu_threshold = 30.0
 memory_threshold = 85.0
 disk_threshold = 50
+
+# Define a message 
+
+message = ''' Hey Adama,
+
+It looks like you're system is experiencing some issues. 
+Please see the following breaches in your system thresholds:
+
+Kind regards,
+Also Adama
+
+'''
+
+# Conditional alerting
+
+if cpu_usage > cpu_threshold:
 
 
 
