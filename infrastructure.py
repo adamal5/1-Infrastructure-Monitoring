@@ -34,18 +34,25 @@ message = ''' Hey Adama,
 It looks like you're system is experiencing some issues. 
 Please see the following breaches in your system thresholds:
 
-Kind regards,
-Also Adama
-
 '''
+
+signiture = ''' Kind regards,
+The SRE Team
+'''
+
 
 # Conditional alerting
 
 if cpu_usage > cpu_threshold:
+    message += "\n" + "CPU usage: {}%".format(cpu_usage)
+
+if memory_percentage_usage > memory_threshold:
+    message += "\n" + "Memory usage: {}%".format(memory_percentage_usage)
+
+if disk_usage > disk_threshold:
+    message += "\n" + "Disk usage: {}%".format(disk_threshold)
 
 
 
 # Print the Outcomes to check 
-print("CPU usage: {}%".format(cpu_usage))
-print("Memory usage: {}%".format(memory_percentage_usage))
-print("Disk usage: {}%".format(disk_usage))
+
