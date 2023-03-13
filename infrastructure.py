@@ -9,12 +9,15 @@ Steps:
 2. Define a threshold for these metrics
 3. Send an alert when the issue is detected 
 
-I'm going to use SES as my notification system 
+I'm going to use SNS as my notification system 
 
 '''
 
 # Import the libary to get system metrics
 import psutil
+
+# Import boto3 to you amazon SNS
+import boto3
 
 # Define the metrics we will monitor
 
@@ -59,13 +62,31 @@ def check_metric_thresholds(names,metrics,thresholds, message):
             message += "\n" + names[i] + " usage: {}%".format(metrics[i])
     
     print (message + "\n" +  "\n" +  signiture)
+    return message
 
 
 # send an alert using AWS SES
+
+def send_message_via_sns(alert_message):
+    client = boto3.client('sns')
+    response = client.publish(
+    TopicArn='ADD YOUR AWS TOPIC ARN HERE',
+    Message= alert_message,
+    Subject='System Threshold Breach',
+    MessageAttributes={
+        'myAttributes': {
+            'DataType': 'String',
+            'StringValue': 'myValue',
+        }
+    })
+
+    print(response)
+
 
 # Print the Outcomes to check 
 
 names = list_metrics()
 metrics = get_current_system_metrics()
 thresholds = define_metric_thresholds()
-check_metric_thresholds(names, metrics, thresholds, message)
+alert_message = check_metric_thresholds(names, metrics, thresholds, message)
+response_message= send_message_via_sns(alert_message)
