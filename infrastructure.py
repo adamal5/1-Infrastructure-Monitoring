@@ -27,7 +27,6 @@ def get_current_system_metrics():
     memory_percentage_usage = psutil.virtual_memory().percent
     disk_usage = psutil.disk_usage('/').percent
     metrics = [cpu_usage,memory_percentage_usage,disk_usage]
-    print(metrics)
     return metrics
 
 # Define the thresholds
@@ -36,7 +35,6 @@ def define_metric_thresholds():
     memory_threshold = 1.0
     disk_threshold = 1.0
     threholds = [cpu_threshold,memory_threshold,disk_threshold]
-    print(threholds)
     return threholds
 
 # Define a message 
