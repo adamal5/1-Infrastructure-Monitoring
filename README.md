@@ -4,7 +4,6 @@
 
 
 ### Brief:
-'''
 Build a Python tool that monitors your infrastructure and alerts you when issues arise. The tool should be able to monitor things like CPU usage, memory usage and disk space. When an issue is detected, the tool should notify you via email or text message.
 
 ### My Approach:
