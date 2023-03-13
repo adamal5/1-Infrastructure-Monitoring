@@ -2,6 +2,19 @@
 ## This is the first task in a set of tasks to refresh Python Skills.
 ### Project: Build a Python tool that monitors your infrastructure and alerts you if a static threshold is breached. 
 
+
+### Brief:
+'''
+Build a Python tool that monitors your infrastructure and alerts you when issues arise. The tool should be able to monitor things like CPU usage, memory usage and disk space. When an issue is detected, the tool should notify you via email or text message.
+
+### My Approach:
+**Steps:**
+1. Aquire current system metric values
+2. Define a threshold for these metrics
+3. Check if the threshold has been breached
+4. Send an alert via SNS if an issue is detected 
+
+
 ### Pre-Requisites
 If you wish to use this script to check your local system and send and email alert you need to meet the following requirments:
 
