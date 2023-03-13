@@ -51,7 +51,7 @@ def check_metric_thresholds(names,metrics,thresholds, message):
     # print (message + "\n" +  "\n" +  signiture)
     if is_breached != True:
         print ('There has been no breach')
-        exit
+        exit()
 
     return message
 
