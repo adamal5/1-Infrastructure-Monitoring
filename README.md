@@ -24,3 +24,9 @@ If you wish to use this script to check your local system and send and email ale
 5. You will need a configured AWS role or user with SNS persmissions
 
 Once you have all this you can run the script from your local machine and change any of the threshold in the script to monitor. 
+
+### Improvements & Alteratives
+
+1. Using a lambda to run this code and use eventbridge to schedule events at a required interval such as every 5 minutes
+    - This would require further development as the script we need to access the host machine and run part of this script on the machine.
+2. Another option is simply to create a cronjob to run this at the desired frequency
