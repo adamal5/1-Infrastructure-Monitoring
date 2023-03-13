@@ -13,46 +13,61 @@ I'm going to use SES as my notification system
 
 '''
 
+# Import the libary to get system metrics
 import psutil
 
 # Define the metrics we will monitor
 
-cpu_usage = psutil.cpu_percent(interval=1)
-memory_percentage_usage = psutil.virtual_memory().percent
-disk_usage = psutil.disk_usage('/').percent
+def list_metrics():
+    names = ['CPU','Memory','Disk']
+    return names
+
+def get_current_system_metrics():
+    cpu_usage = psutil.cpu_percent(interval=1)
+    memory_percentage_usage = psutil.virtual_memory().percent
+    disk_usage = psutil.disk_usage('/').percent
+    metrics = [cpu_usage,memory_percentage_usage,disk_usage]
+    print(metrics)
+    return metrics
 
 # Define the thresholds
-
-cpu_threshold = 30.0
-memory_threshold = 85.0
-disk_threshold = 50
+def define_metric_thresholds():
+    cpu_threshold = 1.0
+    memory_threshold = 1.0
+    disk_threshold = 1.0
+    threholds = [cpu_threshold,memory_threshold,disk_threshold]
+    print(threholds)
+    return threholds
 
 # Define a message 
 
-message = ''' Hey Adama,
+message = '''Hey Adama,
 
 It looks like you're system is experiencing some issues. 
 Please see the following breaches in your system thresholds:
 
 '''
 
-signiture = ''' Kind regards,
+signiture = '''Kind regards,
 The SRE Team
 '''
 
 
 # Conditional alerting
 
-if cpu_usage > cpu_threshold:
-    message += "\n" + "CPU usage: {}%".format(cpu_usage)
-
-if memory_percentage_usage > memory_threshold:
-    message += "\n" + "Memory usage: {}%".format(memory_percentage_usage)
-
-if disk_usage > disk_threshold:
-    message += "\n" + "Disk usage: {}%".format(disk_threshold)
+def check_metric_thresholds(names,metrics,thresholds, message):
+    for i in range(len(metrics)):
+        if metrics[i] > thresholds[i]:
+            message += "\n" + names[i] + " usage: {}%".format(metrics[i])
+    
+    print (message + "\n" +  "\n" +  signiture)
 
 
+# send an alert using AWS SES
 
 # Print the Outcomes to check 
 
+names = list_metrics()
+metrics = get_current_system_metrics()
+thresholds = define_metric_thresholds()
+check_metric_thresholds(names, metrics, thresholds, message)
