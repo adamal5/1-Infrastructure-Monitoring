@@ -1,18 +1,3 @@
-'''
-Build a Python tool that monitors your infrastructure and alerts you when issues arise. 
-The tool should be able to monitor things like CPU usage, memory usage, disk space, and 
-network connectivity. When an issue is detected, the tool should notify you via email or text message.
-
-Steps:
-
-1. Access the operating system and gain the key metrics. (AWS Instance)
-2. Define a threshold for these metrics
-3. Send an alert when the issue is detected 
-
-I'm going to use SNS as my notification system 
-
-'''
-
 # Import the libary to get system metrics
 import psutil
 
