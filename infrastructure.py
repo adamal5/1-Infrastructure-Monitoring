@@ -42,11 +42,17 @@ The SRE Team
 # Conditional alerting
 
 def check_metric_thresholds(names,metrics,thresholds, message):
+    is_breached = False
     for i in range(len(metrics)):
         if metrics[i] > thresholds[i]:
             message += "\n" + names[i] + " usage: {}%".format(metrics[i])
+            is_breached = True
     
-    print (message + "\n" +  "\n" +  signiture)
+    # print (message + "\n" +  "\n" +  signiture)
+    if is_breached != True:
+        print ('There has been no breach')
+        exit
+
     return message
 
 
